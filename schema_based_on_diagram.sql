@@ -27,4 +27,23 @@ CREATE TABLE treatments_histories (
     PRIMARY KEY (treatment_id, medical_history_id)
 )
 
+CREATE TABLE invoices (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    total_amount DECIMAL,
+    generated_at TIMESTAMP,
+    payed_at TIMESTAMP,
+    medical_history_id INT REFERENCES medical_histories(id),
+    PRIMARY KEY(id)
+);
+
+
+CREATE TABLE invoice_items (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    unite_price DECIMAL,
+    quantity INT,
+    total_price DECIMAL,
+    invoice_id INT REFERENCES invoices(id),
+    treatment_id INT,
+    PRIMARY KEY(id)
+);
 
