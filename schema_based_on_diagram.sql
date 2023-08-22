@@ -33,7 +33,7 @@ CREATE TABLE invoices (
     generated_at TIMESTAMP,
     payed_at TIMESTAMP,
     medical_history_id INT REFERENCES medical_histories(id),
-    PRIMARY KEY(id)
+    PRIMARY KEY(id, medical_history_id)
 );
 
 
@@ -44,6 +44,6 @@ CREATE TABLE invoice_items (
     total_price DECIMAL,
     invoice_id INT REFERENCES invoices(id),
     treatment_id INT,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id, invoice_id)
 );
 
